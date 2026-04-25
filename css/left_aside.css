@@ -28,7 +28,8 @@
 
     height: 40px;
     max-width: calc(300px - 8px*2);
-    width: min(30vw, 300px);
+    width: min(calc(30vw - 8px*2), 300px);
+    padding: 8px;
 }
 
 .burger_menu--close {
@@ -37,6 +38,7 @@
 }
 
 .burger_menu--close * {
+    opacity: 0.1;
     overflow: hidden;
 }
 
