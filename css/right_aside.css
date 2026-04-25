@@ -1,0 +1,21 @@
+.right_form__wrapper {
+    position: fixed;
+    top: 0;
+    right: 0;
+    max-width: 300px;
+    width: min(30vw, 300px);
+    padding: 16px;
+    height: calc(100% - 16px*2);
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, .4);
+    overflow-y: auto;
+}
+
+.right_form__wrapper h2 {
+    padding-bottom: 8px;
+    color: var(--color-primary);
+    border-bottom: 2px solid var(--color-secondary);
+}
+
+.employee_add_form--close {
+    display: none;
+}

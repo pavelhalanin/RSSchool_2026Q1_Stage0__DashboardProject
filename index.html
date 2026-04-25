@@ -5,7 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="./style.css?nocache=2026-04-22_21-00">
+    <link rel="stylesheet" href="./css/main.css?nocache=2026-04-25_17-30">
+    <link rel="stylesheet" href="./css/left_aside.css?nocache=2026-04-25_17-30">
+    <link rel="stylesheet" href="./css/right_aside.css?nocache=2026-04-25_17-30">
+    <link rel="stylesheet" href="./css/input.css?nocache=2026-04-25_17-30">
+    <script src="./js/Employee.js?nocache=2026-04-25_17-30"></script>
 </head>
 
 <body>
@@ -48,7 +52,70 @@
             </ul>
         </nav>
     </aside>
-    <main></main>
+    <main class="main">
+        <button class="btn btn-success" onclick="Employee.open()">Add employee</button>
+    </main>
+    <aside id="right_form__employee" class="right_form__wrapper employee_add_form--close">
+        <form action="">
+            <h2>Add New Employee</h2>
+            <div class="input__wrapper">
+                <label for="employee_add_form__name">Name: *</label>
+
+                <input id="employee_add_form__name" type="text" pattern="[A-Za-z\s]+" minlength="3"
+                    title="Name must be at least 3 characters and contain only letters" required
+                    data-error-message="eeeeeeeeeeeee">
+
+                <div class="input__error_message">
+                    Name must be at least 3 characters and contain only letters
+                </div>
+            </div>
+            <div class="input__wrapper">
+                <label for="employee_add_form__surname">Surname: *</label>
+
+                <input id="employee_add_form__surname" type="text" pattern="[A-Za-z\s]+" minlength="3"
+                    title="Surname must be at least 3 characters and contain only letters" required>
+
+                <div class="input__error_message">
+                    Surname must be at least 3 characters and contain only letters
+                </div>
+            </div>
+            <div class="input__wrapper">
+                <label for="employee_add_form__birthday">Birthday: *</label>
+
+                <input id="employee_add_form__birthday" type="date" title="Date of birth is required" required>
+
+                <div class="input__error_message">
+                    Date of birth is required
+                </div>
+            </div>
+            <div class="input__wrapper">
+                <label for="employee_add_form__position">Position: *</label>
+                <select id="employee_add_form__position" required>
+                    <option value="">Select position</option>
+                    <option value="Junior">Junior</option>
+                    <option value="Middle">Middle</option>
+                    <option value="Senior">Senior</option>
+                    <option value="Lead">Lead</option>
+                    <option value="Architect">Architect</option>
+                    <option value="BO">BO</option>
+                </select>
+                <div class="input__error_message">
+                    Position is required
+                </div>
+            </div>
+            <div class="input__wrapper">
+                <label for="">Salary: *</label>
+
+                <input type="number" required min="0.01" step="0.01" title="Salary must be greater than 0">
+
+                <div class="input__error_message">
+                    Salary must be greater than 0
+                </div>
+            </div>
+            <button class="btn btn-success">Add</button>
+            <button class="btn btn-secondary" onclick="event.preventDefault(); Employee.cancel()">Cancel</button>
+        </form>
+    </aside>
 </body>
 
 </html>

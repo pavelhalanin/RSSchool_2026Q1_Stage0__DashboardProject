@@ -1,0 +1,45 @@
+.input__wrapper {
+    padding: 8px 0;
+}
+
+.input__wrapper label {
+    color: var(--color-primary);
+}
+
+.input__wrapper>input {
+    outline: none;
+    width: calc(100% - 8px*2 - 2px*2);
+    border: 2px solid var(--color-primary);
+    padding: 8px;
+    border-radius: 4px;
+    margin: 8px 0;
+}
+
+.input__wrapper>select {
+    outline: none;
+    width: 100%;
+    border: 2px solid var(--color-primary);
+    padding: 8px;
+    border-radius: 4px;
+    margin: 8px 0;
+}
+
+.input__wrapper>input:invalid,
+.input__wrapper>select:invalid {
+    border-color: var(--color-danger);
+}
+
+.input__error_message {
+    display: none;
+}
+
+.input__wrapper>input:user-invalid+.input__error_message,
+.input__wrapper>select:user-invalid+.input__error_message {
+    display: block;
+    color: var(--color-danger);
+}
+
+.input__wrapper>input:valid,
+.input__wrapper>select:valid {
+    border-color: var(--color-success);
+}
