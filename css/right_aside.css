@@ -8,6 +8,7 @@
     height: calc(100% - 16px*2);
     box-shadow: 1px 1px 8px rgba(0, 0, 0, .4);
     overflow-y: auto;
+    background-color: var(--color-light);
 }
 
 .right_form__wrapper h2 {
