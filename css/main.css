@@ -48,6 +48,17 @@ a:hover {
     padding: .375rem .75rem;
     border-radius: .25rem;
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    text-decoration: none;
+}
+
+.btn.btn-primary {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-light);
+}
+
+.btn.btn-primary:hover {
+    background-color: var(--color-primary-hover);
 }
 
 .btn.btn-success {

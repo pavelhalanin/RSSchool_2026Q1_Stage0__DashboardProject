@@ -1,0 +1,28 @@
+.burger_footer {
+    padding-top: 8px;
+}
+
+.burger_footer>ul {
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.burger_footer>ul>li {
+    list-style-type: none;
+    padding: 4px;
+}
+
+.burger_footer>ul>li>a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.burger_footer__school_link {
+    padding-top: 16px;
+    text-align: center;
+}
