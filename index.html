@@ -7,9 +7,10 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="./css/main.css?nocache=2026-04-25_17-30">
     <link rel="stylesheet" href="./css/left_aside.css?nocache=2026-04-25_17-30">
-    <link rel="stylesheet" href="./css/right_aside.css?nocache=2026-04-25_17-30">
+    <link rel="stylesheet" href="./css/right_aside.css?nocache=2026-04-25_17-55">
     <link rel="stylesheet" href="./css/input.css?nocache=2026-04-25_17-30">
     <script src="./js/Employee.js?nocache=2026-04-25_17-30"></script>
+    <script src="./js/Project.js?nocache=2026-04-25_17-55"></script>
 </head>
 
 <body>
@@ -54,6 +55,7 @@
     </aside>
     <main class="main">
         <button class="btn btn-success" onclick="Employee.open()">Add employee</button>
+        <button class="btn btn-success" onclick="Project.open()">Add project</button>
     </main>
     <aside id="right_form__employee" class="right_form__wrapper employee_add_form--close">
         <form action="">
@@ -62,8 +64,7 @@
                 <label for="employee_add_form__name">Name: *</label>
 
                 <input id="employee_add_form__name" type="text" pattern="[A-Za-z\s]+" minlength="3"
-                    title="Name must be at least 3 characters and contain only letters" required
-                    data-error-message="eeeeeeeeeeeee">
+                    title="Name must be at least 3 characters and contain only letters" required>
 
                 <div class="input__error_message">
                     Name must be at least 3 characters and contain only letters
@@ -106,7 +107,7 @@
             <div class="input__wrapper">
                 <label for="">Salary: *</label>
 
-                <input type="number" required min="0.01" step="0.01" title="Salary must be greater than 0">
+                <input type="number" min="0.01" step="0.01" title="Salary must be greater than 0" required>
 
                 <div class="input__error_message">
                     Salary must be greater than 0
@@ -114,6 +115,52 @@
             </div>
             <button class="btn btn-success">Add</button>
             <button class="btn btn-secondary" onclick="event.preventDefault(); Employee.cancel()">Cancel</button>
+        </form>
+    </aside>
+    <aside id="right_form__project" class="right_form__wrapper project_add_form--close">
+        <form action="">
+            <h2>Add New Project</h2>
+            <div class="input__wrapper">
+                <label for="employee_add_form__project_name">Project Name: *</label>
+
+                <input id="employee_add_form__project_name" type="text" minlength="3" pattern="[A-Za-z0-9\s]+"
+                    title="Project name must be at least 3 characters" required>
+
+                <div class="input__error_message">
+                    Project name must be at least 3 characters
+                </div>
+            </div>
+            <div class="input__wrapper">
+                <label for="employee_add_form__company_name">Company Name: *</label>
+
+                <input id="employee_add_form__company_name" type="text" minlength="2" pattern="[A-Za-z0-9\s]+"
+                    title="Company name must be at least 2 characters" required>
+
+                <div class="input__error_message">
+                    Company name must be at least 2 characters
+                </div>
+            </div>
+            <div class="input__wrapper">
+                <label for="employee_add_form__budget">Budget: *</label>
+
+                <input id="employee_add_form__budget" type="number" min="0.01" step="0.01"
+                    title="Budget must be greater than 0" required>
+
+                <div class="input__error_message">
+                    Budget must be greater than 0
+                </div>
+            </div>
+            <div class="input__wrapper">
+                <label for="">Employee Capacity: *</label>
+
+                <input type="number" min="1" step="1" title="Employee capacity must be at least 1" required>
+
+                <div class="input__error_message">
+                    Employee capacity must be at least 1
+                </div>
+            </div>
+            <button class="btn btn-success">Add</button>
+            <button class="btn btn-secondary" onclick="event.preventDefault(); Project.cancel()">Cancel</button>
         </form>
     </aside>
 </body>

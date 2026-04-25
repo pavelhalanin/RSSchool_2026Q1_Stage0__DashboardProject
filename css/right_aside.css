@@ -16,6 +16,7 @@
     border-bottom: 2px solid var(--color-secondary);
 }
 
-.employee_add_form--close {
+.employee_add_form--close,
+.project_add_form--close {
     display: none;
 }
