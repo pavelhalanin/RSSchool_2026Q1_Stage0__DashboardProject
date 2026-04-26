@@ -116,4 +116,63 @@ class Employee {
       alert(exception);
     }
   }
+
+  static calculateAge(birthDate) {
+    const today = new Date();
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+
+    if (
+      monthDiff < 0 ||
+      (monthDiff === 0 && today.getDate() < birthDate.getDate())
+    ) {
+      age--;
+    }
+    return age;
+  }
+
+  static onChangeBirthDay() {
+    const DIV = document.getElementById(this.id_form_wrapper);
+
+    if (!DIV) {
+      console.error(`Node not found #${this.id_form_wrapper}`);
+      alert(`Node not found #${this.id_form_wrapper}`);
+      return;
+    }
+
+    const FORM = DIV.querySelector("form");
+
+    if (!FORM) {
+      console.error(`Node not found #${this.id_form_wrapper} form`);
+      alert(`Node not found #${this.id_form_wrapper} form`);
+      return;
+    }
+
+    const INPUT_BIRTHDAY = FORM.querySelector(`input[name='birthday']`);
+    if (!INPUT_BIRTHDAY) {
+      console.error(
+        `Node not found #${this.id_form_wrapper} form input[name='birthday']`,
+      );
+      alert(
+        `Node not found #${this.id_form_wrapper} form input[name='birthday']`,
+      );
+      return;
+    }
+
+    const DATE = new Date(`${INPUT_BIRTHDAY.value}`);
+    const AGE = this.calculateAge(DATE);
+
+    const INPUT_AGE = FORM.querySelector(`input[data-input-name='age']`);
+    if (!INPUT_AGE) {
+      console.error(
+        `Node not found #${this.id_form_wrapper} form input[data-input-name='age']`,
+      );
+      alert(
+        `Node not found #${this.id_form_wrapper} form input[data-input-name='age']`,
+      );
+      return;
+    }
+
+    INPUT_AGE.value = AGE;
+  }
 }

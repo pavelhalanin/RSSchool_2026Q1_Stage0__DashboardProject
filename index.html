@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="./css/burger_footer.css?nocache=2026-04-26_01-35">
     <link rel="stylesheet" href="./css/left_aside.css?nocache=2026-04-26_03-30">
     <link rel="stylesheet" href="./css/right_aside.css?nocache=2026-04-26_01-15">
-    <link rel="stylesheet" href="./css/input.css?nocache=2026-04-25_17-30">
+    <link rel="stylesheet" href="./css/input.css?nocache=2026-04-26_04-15">
     <script src="./js/Burger.js?nocache=2026-04-26_01-15"></script>
-    <script src="./js/Employee.js?nocache=2026-04-26_03-30"></script>
+    <script src="./js/Employee.js?nocache=2026-04-26_04-15"></script>
     <script src="./js/Project.js?nocache=2026-04-26_03-30"></script>
     <script src="./js/Period.js?nocache=2026-04-26_03-30"></script>
     <script src="./js/Storage.js?nocache=2026-04-26_03-30"></script>
@@ -158,11 +158,16 @@
             <div class="input__wrapper">
                 <label for="employee_add_form__birthday">Birthday: *</label>
 
-                <input id="employee_add_form__birthday" name="birthday" oninput="Employee.onChangeInput()" type="date"
+                <input id="employee_add_form__birthday" name="birthday" oninput="Employee.onChangeInput(); Employee.onChangeBirthDay();" type="date"
                     title="Date of birth is required" required>
 
                 <div class="input__error_message">
                     Date of birth is required
+                </div>
+                <input class="input--hide" type="number" min="18" pattern="[\d]*" data-input-name="age" oninput="Employee.onChangeBirthDay();">
+
+                <div class="input__error_message">
+                    Age is not 18+
                 </div>
             </div>
             <div class="input__wrapper">

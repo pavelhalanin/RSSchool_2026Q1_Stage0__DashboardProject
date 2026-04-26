@@ -33,8 +33,8 @@
     display: none;
 }
 
-.input__wrapper>input:user-invalid+.input__error_message,
-.input__wrapper>select:user-invalid+.input__error_message {
+.input__wrapper>input:invalid+.input__error_message,
+.input__wrapper>select:invalid+.input__error_message {
     display: block;
     color: var(--color-danger);
 }
@@ -42,4 +42,12 @@
 .input__wrapper>input:valid,
 .input__wrapper>select:valid {
     border-color: var(--color-success);
+}
+
+.input__wrapper>.input--hide {
+    width: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    border: none;
 }
