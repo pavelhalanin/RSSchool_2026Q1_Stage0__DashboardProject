@@ -76,7 +76,7 @@ class Employee {
         </thead>
         <tbody>
           ${ARRAY.map((e) => {
-            const BIRTHDAY = e.birthday;
+            const BIRTHDAY = e.dob;
             const AGE = this.calculateAge(new Date(BIRTHDAY));
             const BIRTHDAY_TITLE = [`Дата рождения: ${BIRTHDAY}`]
               .join("")
@@ -198,14 +198,12 @@ class Employee {
       return;
     }
 
-    const INPUT_BIRTHDAY = FORM.querySelector(`input[name='birthday']`);
+    const INPUT_BIRTHDAY = FORM.querySelector(`input[name='dob']`);
     if (!INPUT_BIRTHDAY) {
       console.error(
-        `Node not found #${this.id_form_wrapper} form input[name='birthday']`,
+        `Node not found #${this.id_form_wrapper} form input[name='dob']`,
       );
-      alert(
-        `Node not found #${this.id_form_wrapper} form input[name='birthday']`,
-      );
+      alert(`Node not found #${this.id_form_wrapper} form input[name='dob']`);
       return;
     }
 
