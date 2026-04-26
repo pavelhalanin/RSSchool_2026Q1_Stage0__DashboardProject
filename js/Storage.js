@@ -1,8 +1,15 @@
 class Storage {
   static localStorageKey = "dashboard_json";
 
+  static getId() {
+    return new Date().getTime();
+  }
+
   static addProject_byData(data) {
     const PERIOD = Period.getPeriod();
+
+    data.id = this.getId();
+
     console.log("Project added", PERIOD, data);
 
     const STRING_JSON = localStorage.getItem(this.localStorageKey);
@@ -46,6 +53,9 @@ class Storage {
 
   static addEmployee_byData(data) {
     const PERIOD = Period.getPeriod();
+
+    data.id = this.getId();
+
     console.log("Employee added", PERIOD, data);
 
     const STRING_JSON = localStorage.getItem(this.localStorageKey);
