@@ -16,7 +16,6 @@ class Project {
   }
 
   static open() {
-    Assigments.cancel();
     Project.cancel();
     Employee.cancel();
 

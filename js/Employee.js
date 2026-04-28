@@ -16,7 +16,6 @@ class Employee {
   }
 
   static open() {
-    Assigments.cancel();
     Project.cancel();
     Employee.cancel();
 
@@ -92,6 +91,10 @@ class Employee {
               .join("")
               .replace(/"/g, `'`);
 
+            const ASSIGMENT_LENGTH =
+              "assigments" in e ? e.assigments.length : 0;
+            const PAYMENT = ASSIGMENT_LENGTH > 0 ? e.salary : e.salary / 2;
+
             return /* html */ `
               <tr>
                 <td>${e.name}</td>
@@ -99,11 +102,13 @@ class Employee {
                 <td title="${BIRTHDAY_TITLE}">${AGE}</td>
                 <td>${e.position}</td>
                 <td>${e.salary}</td>
-                <td>?</td>
-                <td>?</td>
+                <td>${PAYMENT}</td>
+                <td>
+                  <button class="btn btn-primary" onclick="EmployeeGetAssigments.open_byEmployeeId('${e.id}')">Show assigments (${ASSIGMENT_LENGTH})</button>  
+                </td>
                 <td>?</td>
                 <td>
-                  <button class="btn btn-primary" onclick="Assigments.setFormAdd_byEmployeeId('${e.id}'); Assigments.open()">Assigments</button>
+                  <button class="btn btn-primary" onclick="EmployeeAddAssigment.open_byEmployeeId('${e.id}')">Assigments</button>
                   <button class="btn btn-danger" onclick="alert('nothing')">Delete</button>
                 </td>
               </tr>

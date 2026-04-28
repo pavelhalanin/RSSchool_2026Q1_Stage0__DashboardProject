@@ -1,0 +1,23 @@
+.modal_wrapper {
+    padding: 0;
+    border: none;
+    border-radius: 8px;
+}
+
+.modal_wrapper::backdrop {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal_wrapper>header {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+}
+
+.modal_wrapper>header>h2 {
+    margin: 0;
+}
+
+.modal_wrapper>div {
+    padding: 8px;
+}

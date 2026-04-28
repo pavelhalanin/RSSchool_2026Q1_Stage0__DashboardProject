@@ -128,4 +128,34 @@ class Storage {
       }
     }
   }
+
+  static getEmployeesAssigments_byEmployeeId(employeeId) {
+    const PERIOD = Period.getPeriod();
+
+    const STRING_JSON = localStorage.getItem(this.localStorageKey);
+    let object = JSON.parse(STRING_JSON);
+    if (object === null) {
+      object = {};
+    }
+
+    if (!(PERIOD in object)) {
+      object[PERIOD] = {};
+    }
+
+    if (!("employees" in object[PERIOD])) {
+      object[PERIOD]["employees"] = [];
+    }
+
+    for (let i = 0; i < object[PERIOD]["employees"].length; i += 1) {
+      if (object[PERIOD]["employees"][i].id == employeeId) {
+        if (!("assigments" in object[PERIOD]["employees"][i])) {
+          object[PERIOD]["employees"][i]["assigments"] = [];
+        }
+
+        return object[PERIOD]["employees"][i]["assigments"];
+      }
+    }
+
+    return [];
+  }
 }

@@ -1,0 +1,84 @@
+class EmployeeGetAssigments {
+  static id_modal = "employees_assignts_table_on_modal";
+
+  static close() {
+    try {
+      const DIALOG = document.getElementById(this.id_modal);
+      if (!DIALOG) {
+        alert(`Узел не найден #${this.id_modal}`);
+        return;
+      }
+
+      DIALOG.close();
+    } catch (exception) {
+      console.error(exception);
+      alert(exception);
+    }
+  }
+
+  static open_byEmployeeId(employeeId) {
+    try {
+      document.querySelectorAll(`#${this.id_modal}`).forEach((e) => e.remove());
+      const DIALOG = document.createElement("dialog");
+      DIALOG.setAttribute("id", `${this.id_modal}`);
+      DIALOG.classList.add("modal_wrapper");
+
+      const EMPLOYEE_ASSIGMENTS =
+        Storage.getEmployeesAssigments_byEmployeeId(employeeId);
+
+      DIALOG.innerHTML = /* html */ `
+                <header class="bg-dark">
+                    <h2>Assigments</h2>
+                    <button class="btn btn-danger" onclick="${this.name}.close()">x</button>
+                </header>
+                <div>
+                    <div class="alert bg-info">
+                        Вы сейчас пытаетесь посмотреть с какими проектами связан сотрудник.
+                    </div>
+
+                    <table class="table bordered">
+                        <thead>
+                            <tr>
+                                <th>Project</th>
+                                <th>Capacity</th>
+                                <th>Fit</th>
+                                <th>Vacation</th>
+                                <th>Effective</th>
+                                <th>Revenue</th>
+                                <th>Cost</th>
+                                <th>Profit</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${EMPLOYEE_ASSIGMENTS.map((e) => {
+                              const EFFECTIVE = Number(
+                                e.capacity * e.fit,
+                              ).toFixed(3);
+                              return `
+                                    <tr>
+                                        <td></td>
+                                        <td>${e.capacity}</td>
+                                        <td>${e.fit}</td>
+                                        <td>?</td>
+                                        <td>${EFFECTIVE}</td>
+                                        <td>?</td>
+                                        <td>?</td>
+                                        <td>?</td>
+                                        <td>?</td>
+                                    </tr>
+                                `;
+                            }).join("")}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+      document.body.appendChild(DIALOG);
+
+      DIALOG.showModal();
+    } catch (exception) {
+      console.error(exception);
+      alert(exception);
+    }
+  }
+}
