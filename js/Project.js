@@ -61,7 +61,7 @@ class Project {
       <button class="btn btn-success" onclick="Project.open()">Add project</button>
 
       <table class="table bordered">
-        <thead>
+        <thead class="bg-dark">
           <tr>
             <th>Company Name</th>
             <th>Project Name</th>

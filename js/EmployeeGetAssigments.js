@@ -37,7 +37,7 @@ class EmployeeGetAssigments {
                     </div>
 
                     <table class="table bordered">
-                        <thead>
+                        <thead class="bg-dark">
                             <tr>
                                 <th>Project</th>
                                 <th>Capacity</th>
@@ -52,14 +52,16 @@ class EmployeeGetAssigments {
                         </thead>
                         <tbody>
                             ${EMPLOYEE_ASSIGMENTS.map((e) => {
+                              const CAPACITY = Number(e.capacity).toFixed(2);
+                              const FIT = Number(e.fit).toFixed(2);
                               const EFFECTIVE = Number(
                                 e.capacity * e.fit,
                               ).toFixed(3);
                               return `
                                     <tr>
                                         <td></td>
-                                        <td>${e.capacity}</td>
-                                        <td>${e.fit}</td>
+                                        <td>${CAPACITY}</td>
+                                        <td>${FIT}</td>
                                         <td>?</td>
                                         <td>${EFFECTIVE}</td>
                                         <td>?</td>

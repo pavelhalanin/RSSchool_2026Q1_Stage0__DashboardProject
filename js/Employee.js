@@ -61,7 +61,7 @@ class Employee {
       <button class="btn btn-success" onclick="Employee.open()">Add employee</button>
 
       <table class="table bordered">
-        <thead>
+        <thead class="bg-dark">
           <tr>
               <th>Name</th>
               <th>Surname</th>
