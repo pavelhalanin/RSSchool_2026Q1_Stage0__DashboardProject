@@ -1,5 +1,6 @@
 .body {
     display: flex;
+    width: 100%;
     height: 100%;
 }
 
@@ -8,6 +9,12 @@
     padding: calc(48px + 8px) 8px 8px 8px;
     width: calc(100% - min(30vw, 300px));
     overflow-x: auto;
+
+    transition: width ease 0.5s;
+}
+
+.burger_menu--close+.main {
+    width: 100%;
 }
 
 .main>section>header {
@@ -59,13 +66,13 @@
 .burger_menu__burger_button {
     width: 100%;
     border: none;
-    background-color: var(--color-element);
+    background-color: var(--color-dark);
     color: white;
     padding: 15px;
 }
 
 .burger_menu__burger_button:hover {
-    background-color: var(--color-element-hover);
+    background-color: var(--color-dark-hover);
 }
 
 .burger_menu__text {
@@ -95,8 +102,10 @@
     color: white;
     padding: 15px;
     text-align: left;
+
+    transition: all ease 0.5s;
 }
 
 .burger_menu__nav>ul>li>button:hover {
-    background-color: var(--color-element);
+    background-color: var(--color-dark-hover);
 }

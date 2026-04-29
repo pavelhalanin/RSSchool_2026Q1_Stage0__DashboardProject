@@ -31,7 +31,7 @@ class SeedData {
           <button class="btn btn-danger" onclick="${this.name}.close()">x</button>
         </header>
         <div>
-          <div class="alert bg-info">
+          <div class="alert alert-info">
             Тут можно скопировать данные определного месяца в выбранный период
           </div>
 

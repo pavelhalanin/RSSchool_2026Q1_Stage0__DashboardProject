@@ -32,7 +32,7 @@ class EmployeeGetAssignments {
                     <button class="btn btn-danger" onclick="${this.name}.close()">x</button>
                 </header>
                 <div>
-                    <div class="alert bg-info">
+                    <div class="alert alert-info">
                         Вы сейчас пытаетесь посмотреть с какими проектами связан сотрудник.
                     </div>
 
@@ -99,4 +99,3 @@ class EmployeeGetAssignments {
     Employee.renderContent();
   }
 }
-

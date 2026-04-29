@@ -31,7 +31,7 @@ class Availability {
           <button class="btn btn-danger" onclick="${this.name}.close()">x</button>
         </header>
         <div>
-          <div class="alert bg-info">
+          <div class="alert alert-info">
             <p>Тут можно выбрать отпуск сотруднику (id = ${employeeId})</p>
             <p>Шесть дней трудись и делай всю свою работу, но седьмой день - это суббота Господу, твоему Богу (Исход 20:11)</p>
             <p>Заниматься делами следует шесть дней, а седьмой - это суббота покоя, святыня Господня (Исход 31:5)</p>

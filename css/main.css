@@ -12,28 +12,27 @@ body {
 }
 
 :root {
-    --color-main: #2c3e50;
-    --color-element: #34495e;
-    --color-element-hover: #4a627a;
-
-    --color-primary: #007bff;
-    --color-primary-hover: #0069d9;
+    --color-primary: #0d6efd;
+    --color-primary-hover: #0b5ed7;
     --color-secondary: #6c757d;
-    --color-secondary-hover: #5a6268;
-    --color-success: #28a745;
-    --color-success-hover: #218838;
+    --color-secondary-hover: #5c636a;
+    --color-success: #198754;
+    --color-success-hover: #157347;
     --color-danger: #dc3545;
-    --color-danger-hover: #c82333;
+    --color-danger-hover: #bb2d3b;
     --color-warning: #ffc107;
-    --color-warning-hover: #e0a800;
-    --color-info: #17a2b8;
-    --color-info-hover: #138496;
+    --color-warning-hover: #ffca2c;
+    --color-info: #0dcaf0;
+    --color-info-hover: #31d2f2;
+    --color-info-alert-bg: #cff4fc;
+    --color-info-alert-border: #b6effb;
+    --color-info-alert-color: #055160;
     --color-light: #f8f9fa;
-    --color-light-hover: #e2e6ea;
-    --color-dark: #343a40;
-    --color-dark-hover: #23272b;
-    --color-link: #007bff;
-    --color-link-hover: #0056b3;
+    --color-light-hover: #f9fafb;
+    --color-dark: #212529;
+    --color-dark-hover: #1c1f23;
+    --color-link: #0d6efd;
+    --color-link-hover: #0a58ca;
 }
 
 a {
@@ -46,17 +45,24 @@ a:hover {
 
 .alert {
     border-radius: 8px;
-    padding: 8px;
+    padding: 1rem;
     margin: 8px 0;
+    border: 1px solid transparent;
 }
 
 .alert>p {
     margin: 0;
 }
 
+.alert.alert-info {
+    background-color: var(--color-info-alert-bg);
+    border-color: var(--color-info-alert-border);
+    color: var(--color-info-alert-color);
+}
+
 .bg-warning {
     background-color: var(--color-warning);
-    color: var(--color-light);
+    color: var(--color-dark);
 }
 
 .bg-info {
@@ -118,7 +124,7 @@ a:hover {
 .btn.btn-warning {
     background-color: var(--color-warning);
     border-color: var(--color-warning);
-    color: var(--color-light);
+    color: var(--color-dark);
 }
 
 .btn.btn-warning:hover {
