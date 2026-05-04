@@ -54,17 +54,54 @@ class EmployeeGetAssignments {
                             ${EMPLOYEE_ASSIGMENTS.map((e) => {
                               const CAPACITY = Number(e.capacity).toFixed(2);
                               const FIT = Number(e.fit).toFixed(2);
+
+                              const workingDays =
+                                VacationCoefficient.getWorkingDays();
+                              const vacationWorkingDays =
+                                VacationCoefficient.getVacationWorkingDays_byEmployeeId(
+                                  employeeId,
+                                );
+                              const vacationCoefficient =
+                                (workingDays - vacationWorkingDays) /
+                                workingDays;
+
                               const EFFECTIVE = Number(
-                                e.capacity * e.fit,
+                                e.capacity * e.fit * vacationCoefficient,
                               ).toFixed(3);
-                              const VACATION_DAYS = Storage.getVacationDays_byEmployeeId(employeeId);
+                              const VACATION_DAYS =
+                                Storage.getVacationDays_byEmployeeId(
+                                  employeeId,
+                                );
+
+                              const TITLE_VACATION = [
+                                VACATION_DAYS.join(", "),
+                                `workingDays = count of weekdays in month`,
+                                `vacationWorkingDays = count of vacation days that are weekdays`,
+                                `vacationCoefficient = (workingDays - vacationWorkingDays) / workingDays`,
+                                ``,
+                                `workingDays = ${workingDays}`,
+                                `vacationWorkingDays = ${vacationWorkingDays}`,
+                                `vacationCoefficient = (${workingDays} - ${vacationWorkingDays}) / ${workingDays} =`,
+                                ` = ${vacationCoefficient}`,
+                              ]
+                                .join("\n")
+                                .replace(/"/g, `'`);
+
+                              const TITLE_EFFECTIVE = [
+                                "EFFECTIVE = CAPACITY * FIT * vacationCoefficient",
+                                `EFFECTIVE = ${e.capacity} * ${e.fit} * ${vacationCoefficient} =`,
+                                `= ${EFFECTIVE}`,
+                              ]
+                                .join("\n")
+                                .replace(/"/g, `'`);
+
                               return `
                                     <tr>
                                         <td></td>
                                         <td>${CAPACITY}</td>
                                         <td>${FIT}</td>
-                                        <td>${VACATION_DAYS.length} days</td>
-                                        <td>${EFFECTIVE}</td>
+                                        <td title="${TITLE_VACATION}">${VACATION_DAYS.length} days</td>
+                                        <td title="${TITLE_EFFECTIVE}">${EFFECTIVE}</td>
                                         <td>?</td>
                                         <td>?</td>
                                         <td>?</td>
