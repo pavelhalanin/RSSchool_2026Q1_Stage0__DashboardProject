@@ -35,4 +35,27 @@ class Period {
 
     return `${YYYY}-${M}`;
   }
+
+  static getTextPeriod_byPeriodKey(period_key) {
+    const ARR = `${period_key}`.split("-");
+    const YEAR = ARR[0];
+    const MONTH_INDEX = ARR[1];
+
+    const MONTH = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+
+    return `${MONTH[MONTH_INDEX]} ${YEAR}`;
+  }
 }

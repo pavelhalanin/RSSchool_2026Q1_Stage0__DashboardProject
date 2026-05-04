@@ -365,6 +365,7 @@ class Storage {
       let total = "?";
 
       return {
+        period,
         year,
         MONTH_TEXT,
         projects_count,
@@ -372,6 +373,43 @@ class Storage {
         total,
       };
     });
+  }
+
+  static copySeed_byPeriod(copy_period) {
+    const PERIOD = Period.getPeriod();
+
+    const IS_CONFIRM = confirm(
+      `Copy data from ${Period.getTextPeriod_byPeriodKey(copy_period)} to ${Period.getTextPeriod_byPeriodKey(PERIOD)}?`,
+    );
+
+    if (!IS_CONFIRM) {
+      return;
+    }
+
+    const STRING_JSON = localStorage.getItem(this.localStorageKey);
+    let object = JSON.parse(STRING_JSON);
+    if (object === null) {
+      object = {};
+    }
+
+    if (!(PERIOD in object)) {
+      object[PERIOD] = {};
+    }
+
+    if (object[copy_period]) {
+      object[PERIOD] = JSON.parse(JSON.stringify(object[copy_period]));
+    }
+
+    if (!("employees" in object[PERIOD])) {
+      object[PERIOD]["employees"] = [];
+    }
+
+    for (let i = 0; i < object[PERIOD]["employees"].length; i += 1) {
+      delete object[PERIOD]["employees"][i]["vacationDays"];
+    }
+
+    localStorage.setItem(this.localStorageKey, JSON.stringify(object));
+    Employee.renderContent();
   }
 
   static init() {

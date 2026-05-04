@@ -56,7 +56,7 @@ class SeedData {
                       <td>${e.employees_count}</td>
                       <td>${e.total}</td>
                       <td>
-                        <button class="btn btn-success" onclick="alert('nothing')">Seed</button>
+                        <button class="btn btn-success" onclick="Storage.copySeed_byPeriod('${e.period}')">Seed</button>
                       </td>
                     </tr>
                   `;
