@@ -195,6 +195,70 @@ class Storage {
     }
   }
 
+  static getVacationDays_byEmployeeId(employeeId) {
+    const PERIOD = Period.getPeriod();
+    const EMPLOYEE_ID = Number(`${employeeId}`);
+
+    console.log("vacationDays get", PERIOD, EMPLOYEE_ID);
+
+    const STRING_JSON = localStorage.getItem(this.localStorageKey);
+    let object = JSON.parse(STRING_JSON);
+    if (object === null) {
+      object = {};
+    }
+
+    if (!(PERIOD in object)) {
+      object[PERIOD] = {};
+    }
+
+    if (!("employees" in object[PERIOD])) {
+      object[PERIOD]["employees"] = [];
+    }
+
+    for (let i = 0; i < object[PERIOD]["employees"].length; i++) {
+      if (object[PERIOD]["employees"][i].id === EMPLOYEE_ID) {
+        if (!("vacationDays" in object[PERIOD]["employees"][i])) {
+          object[PERIOD]["employees"][i]["vacationDays"] = [];
+        }
+
+        return object[PERIOD]["employees"][i]["vacationDays"];
+      }
+    }
+  }
+
+  static addVacationDays_byEmployeeIdAndVacationDays(employeeId, vacationDays) {
+    const PERIOD = Period.getPeriod();
+    const EMPLOYEE_ID = Number(`${employeeId}`);
+
+    console.log("vacationDays added", PERIOD, EMPLOYEE_ID, vacationDays);
+
+    const STRING_JSON = localStorage.getItem(this.localStorageKey);
+    let object = JSON.parse(STRING_JSON);
+    if (object === null) {
+      object = {};
+    }
+
+    if (!(PERIOD in object)) {
+      object[PERIOD] = {};
+    }
+
+    if (!("employees" in object[PERIOD])) {
+      object[PERIOD]["employees"] = [];
+    }
+
+    for (let i = 0; i < object[PERIOD]["employees"].length; i++) {
+      if (object[PERIOD]["employees"][i].id === EMPLOYEE_ID) {
+        if (!("vacationDays" in object[PERIOD]["employees"][i])) {
+          object[PERIOD]["employees"][i]["vacationDays"] = [];
+        }
+
+        object[PERIOD]["employees"][i]["vacationDays"] = vacationDays;
+        localStorage.setItem(this.localStorageKey, JSON.stringify(object));
+        return;
+      }
+    }
+  }
+
   static getEmployeesAssignments_byEmployeeId(employeeId) {
     const PERIOD = Period.getPeriod();
 
@@ -882,5 +946,25 @@ class Storage {
       `;
       localStorage.setItem(this.localStorageKey, JSON);
     }
+  }
+
+  static downloadDumpJson() {
+    const JSON = localStorage.getItem(this.localStorageKey);
+    const DATE_PREFIX = new Date()
+      .toJSON()
+      .slice(0, 19)
+      .replaceAll("T", "_")
+      .replaceAll(":", "-");
+    const FILENAME = `${DATE_PREFIX}_dashboard.json`;
+    const TEXT = JSON;
+
+    const blob = new Blob([TEXT], { type: "text/plain;charset=utf-8" });
+    const element = document.createElement("a");
+    element.href = URL.createObjectURL(blob);
+    element.download = FILENAME;
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+    URL.revokeObjectURL(element.href); // Освобождаем память
   }
 }

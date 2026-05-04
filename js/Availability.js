@@ -24,6 +24,7 @@ class Availability {
       DIALOG.classList.add("modal_wrapper");
 
       const ARR = this.getArray();
+      const VACATION_DAYS = Storage.getVacationDays_byEmployeeId(employeeId);
 
       DIALOG.innerHTML = /* html */ `
         <header>
@@ -36,7 +37,8 @@ class Availability {
             <p>Шесть дней трудись и делай всю свою работу, но седьмой день - это суббота Господу, твоему Богу (Исход 20:11)</p>
             <p>Заниматься делами следует шесть дней, а седьмой - это суббота покоя, святыня Господня (Исход 31:5)</p>
           </div>
-          <div class="availability_month_days">
+          <form class="availability_month_days">
+            <input type="hidden" name="employeeId" value="${employeeId}" >
             <div class="availability_month_days__item">SUN</div>
             <div class="availability_month_days__item">MON</div>
             <div class="availability_month_days__item">TUE</div>
@@ -55,6 +57,8 @@ class Availability {
                 .replace(/"/g, `'`);
 
               const ID_CHECKBOX = `${this.id_modal}_checkbox_${e.year}_${e.month}_${e.date}`;
+              let isCheked =
+                e.isCurrentPeriod && VACATION_DAYS.includes(e.date);
 
               return `
                 <div
@@ -68,14 +72,15 @@ class Availability {
                     name="vacationDays[${e.date}]"
                     value="${e.date}"
                     id="${ID_CHECKBOX}"
+                    ${isCheked ? "checked" : ""}
                   >
                   <label ${e.isCurrentPeriod ? `for="${ID_CHECKBOX}"` : ""}>${e.date}</label>
                 </div>
               `;
             }).join("")}
-          </div>
+          </form>
           <div align="right">
-            <button class="btn btn-success" onclick="alert('nothing')">Set vacation</button>
+            <button class="btn btn-success" onclick="${this.name}.addVacationDays()">Set vacation</button>
           </div>
         </div>
       `;
@@ -147,5 +152,43 @@ class Availability {
     }
 
     return DAYS_ARRAY;
+  }
+
+  static addVacationDays() {
+    try {
+      const DIV = document.getElementById(Availability.id_modal);
+      if (!DIV) {
+        console.error(`Node is not found: #${Availability.id_modal}`);
+        return;
+      }
+
+      const FORM = DIV.querySelector("form");
+      if (!FORM) {
+        console.error(`Node is not found: #${Availability.id_modal} form`);
+        return;
+      }
+
+      const FORM_DATA = new FormData(FORM);
+
+      const OBJECT = {};
+      for (let [name, value] of FORM_DATA.entries()) {
+        OBJECT[name] = value;
+      }
+
+      const KEYS = Object.keys(OBJECT);
+      const VACATION_DAYS = [];
+      for (let i = 0; i < KEYS.length; i += 1) {
+        if (`${KEYS[i]}`.startsWith("vacationDays")) {
+          VACATION_DAYS.push(Number(OBJECT[KEYS[i]]));
+        }
+      }
+
+      Storage.addVacationDays_byEmployeeIdAndVacationDays(
+        OBJECT.employeeId,
+        VACATION_DAYS,
+      );
+    } catch (exception) {
+      alert(exception);
+    }
   }
 }
