@@ -87,13 +87,14 @@ class Project {
                 `
           }
           ${ARRAY.map((e) => {
+            const COUNT_EMPLOYEE = Storage.getCountEmployes_byProjectId(e.id);
             return /* html */ `
               <tr>
                 <td>${e.companyName}</td>
                 <td>${e.projectName}</td>
                 <td>${e.budget}</td>
                 <td>${e.employeeCapacity}</td>
-                <td>?</td>
+                <td>(${COUNT_EMPLOYEE})</td>
                 <td>?</td>
                 <td>
                   <button class="btn btn-danger" onclick="${this.name}.removeProject_byId('${e.id}')">Delete</button>

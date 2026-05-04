@@ -1101,4 +1101,47 @@ class Storage {
 
     return sumUsedEffectiveCapacity;
   }
+
+  static getCountEmployes_byProjectId(projectId) {
+    const PROJECT_ID = Number(projectId);
+    const PERIOD = Period.getPeriod();
+
+    console.log("getCountEmployes_byProjectId", PERIOD, PROJECT_ID);
+
+    const STRING_JSON = localStorage.getItem(this.localStorageKey);
+    let object = JSON.parse(STRING_JSON);
+    if (object === null) {
+      object = {};
+    }
+
+    if (!(PERIOD in object)) {
+      object[PERIOD] = {};
+    }
+
+    if (!("employees" in object[PERIOD])) {
+      object[PERIOD]["employees"] = [];
+    }
+
+    let countEmployee = 0;
+    for (let i = 0; i < object[PERIOD]["employees"].length; i++) {
+      if (!("assignments" in object[PERIOD]["employees"][i])) {
+        object[PERIOD]["employees"][i]["assignments"] = [];
+      }
+
+      for (
+        let j = 0;
+        j < object[PERIOD]["employees"][i]["assignments"].length;
+        j += 1
+      ) {
+        if (
+          object[PERIOD]["employees"][i]["assignments"][j].projectId ===
+          PROJECT_ID
+        ) {
+          countEmployee += 1;
+        }
+      }
+    }
+
+    return countEmployee;
+  }
 }
